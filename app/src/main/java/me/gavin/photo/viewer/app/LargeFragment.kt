@@ -1,8 +1,6 @@
 package me.gavin.photo.viewer.app
 
 import android.content.Context
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
@@ -12,15 +10,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import io.reactivex.Observable
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
+import com.bumptech.glide.Glide
 import me.gavin.photo.viewer.R
 import me.gavin.photo.viewer.app.base.DisplayUtil
 import me.gavin.photo.viewer.app.base.RecyclerAdapter
 import me.gavin.photo.viewer.app.base.RecyclerHolder
 import me.gavin.photo.viewer.databinding.FragLargeImageBinding
-import me.gavin.photo.viewer.databinding.ItemPhotoViewTwoBinding
+import me.gavin.photo.viewer.databinding.ItemImageLargeBinding
 import me.yokeyword.fragmentation.SupportFragment
 
 /**
@@ -50,30 +46,21 @@ class LargeFragment : SupportFragment() {
         binding?.recycler?.scrollToPosition(position)
         binding?.recycler?.setItemViewCacheSize(5)
 
-        Toast.makeText(context, "zoomView", Toast.LENGTH_SHORT).show()
+        Toast.makeText(context, "imageView", Toast.LENGTH_SHORT).show()
     }
 
-    class B(context: Context, list: List<Image>) : RecyclerAdapter<Image, ItemPhotoViewTwoBinding>(context, list, R.layout.item_photo_view_two) {
-        override fun onBind(holder: RecyclerHolder<ItemPhotoViewTwoBinding>?, t: Image?, position: Int) {
-            Observable.just(0)
-                    .map { Uri.withAppendedPath(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, t?.id?.toString()) }
-                    .map { uri -> compressImageToBitmap(uri) }
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe({ bitmap -> holder?.binding?.item?.setImageBitmap(bitmap) },
-                            { throwable -> throwable.printStackTrace() })
+    class B(context: Context, list: List<Image>) : RecyclerAdapter<Image, ItemImageLargeBinding>(context, list, R.layout.item_image_large) {
+        override fun onBind(holder: RecyclerHolder<ItemImageLargeBinding>?, t: Image?, position: Int) {
+            Glide.with(mContext)
+                    .fromMediaStore()
+                    .load(Uri.withAppendedPath(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, t?.id.toString()))
+                    .override(DisplayUtil.getScreenWidth(), DisplayUtil.getScreenHeight())
+                    .into(holder?.binding?.item)
         }
 
-        private fun compressImageToBitmap(uri: Uri): Bitmap {
-            val options = BitmapFactory.Options()
-            options.inJustDecodeBounds = true
-            BitmapFactory.decodeStream(mContext.contentResolver.openInputStream(uri), null, options)
-            options.inJustDecodeBounds = false
-            // 设置压缩倍数 长宽均为 1/inSampleSize 最后成图大小为原图 1/inSampleSize^2
-            options.inSampleSize = Math.min(options.outWidth / DisplayUtil.getScreenWidth(), options.outHeight / DisplayUtil.getScreenHeight())
-            return BitmapFactory.decodeStream(mContext.contentResolver.openInputStream(uri), null, options)
+        override fun onViewRecycled(holder: RecyclerHolder<ItemImageLargeBinding>?) {
+            holder?.binding?.item?.setImageDrawable(null)
         }
     }
-
 
 }

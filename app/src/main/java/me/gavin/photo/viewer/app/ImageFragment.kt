@@ -51,7 +51,7 @@ class ImageFragment : SupportFragment() {
                     binding?.recycler?.layoutManager = GridLayoutManager(context, 3)
                     val adapter = BindingAdapter(context, images, R.layout.item_image)
                     adapter.setOnItemClickListener { position ->
-                        val fragment = if (position % 2 == 0) LargeFragment() else LargeFragment2()
+                        val fragment = LargeFragment()
                         val bundle = Bundle()
                         bundle.putSerializable("images", images as ArrayList<*>)
                         bundle.putInt("position", position)

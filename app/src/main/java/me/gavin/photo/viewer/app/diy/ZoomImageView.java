@@ -1,4 +1,4 @@
-package me.gavin.photo.viewer.test;
+package me.gavin.photo.viewer.app.diy;
 
 import android.content.Context;
 import android.graphics.Bitmap;
