@@ -12,9 +12,9 @@ import android.view.ViewGroup
 import android.widget.Toast
 import com.bumptech.glide.Glide
 import me.gavin.photo.viewer.R
-import me.gavin.photo.viewer.app.base.DisplayUtil
-import me.gavin.photo.viewer.app.base.RecyclerAdapter
-import me.gavin.photo.viewer.app.base.RecyclerHolder
+import me.gavin.photo.viewer.util.DisplayUtil
+import me.gavin.photo.viewer.base.RecyclerAdapter
+import me.gavin.photo.viewer.base.RecyclerHolder
 import me.gavin.photo.viewer.databinding.FragLargeImageBinding
 import me.gavin.photo.viewer.databinding.ItemImageLargeBinding
 import me.yokeyword.fragmentation.SupportFragment

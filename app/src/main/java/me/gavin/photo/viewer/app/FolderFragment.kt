@@ -11,8 +11,8 @@ import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import me.gavin.photo.viewer.R
-import me.gavin.photo.viewer.app.base.BindingAdapter
-import me.gavin.photo.viewer.app.base.DisplayUtil
+import me.gavin.photo.viewer.util.DisplayUtil
+import me.gavin.photo.viewer.base.BindingAdapter
 import me.gavin.photo.viewer.databinding.LayoutToolbarRecyclerBinding
 import me.yokeyword.fragmentation.SupportFragment
 

@@ -9,8 +9,8 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
 
-import me.gavin.photo.viewer.app.base.DisplayUtil;
-import me.gavin.photo.viewer.app.base.L;
+import me.gavin.photo.viewer.util.DisplayUtil;
+import me.gavin.photo.viewer.util.L;
 
 public class AppBarScrollBehavior extends CoordinatorLayout.Behavior<View> {
 
