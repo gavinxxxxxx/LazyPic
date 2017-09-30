@@ -1,4 +1,4 @@
-package me.gavin.photo.viewer.test.pv;
+package me.gavin.photo.viewer.app.pv;
 
 /**
  * Interface definition for a callback to be invoked when the photo is experiencing a drag event

@@ -1,4 +1,4 @@
-package me.gavin.photo.viewer.test.pv;
+package me.gavin.photo.viewer.app.pv;
 
 import android.view.MotionEvent;
 
