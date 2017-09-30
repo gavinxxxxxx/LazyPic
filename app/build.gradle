@@ -1,6 +1,6 @@
 apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-kapt'
+// apply plugin: 'kotlin-android'
+// apply plugin: 'kotlin-kapt'
 apply plugin: 'me.tatarka.retrolambda'
 apply plugin: 'AndResGuard'
 
@@ -101,8 +101,10 @@ dependencies {
     compile 'com.android.support:design:25.3.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
 
-    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    // compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     // compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+
+    // kapt 'com.android.databinding:compiler:2.3.3'
 
     compile 'me.yokeyword:fragmentation:1.1.6'
 
@@ -111,8 +113,4 @@ dependencies {
     compile 'com.tbruyelle.rxpermissions2:rxpermissions:0.9.4@aar'
 
     compile 'com.github.bumptech.glide:glide:3.8.0'
-
-    // compile 'com.github.chrisbanes:PhotoView:2.0.0'
-
-    kapt 'com.android.databinding:compiler:2.3.3'
 }
